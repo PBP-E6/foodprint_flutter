@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'screens/food_catalog_page.dart';
+import 'screens/daily_intake_page.dart';
+import 'screens/carbon_goals_page.dart';
+import 'screens/custom_meals_page.dart';
+import 'screens/eco_alternatives_page.dart';
 
 void main() {
   runApp(const FoodPrintApp());
@@ -21,11 +26,12 @@ class FoodPrintApp extends StatelessWidget {
 }
 
 class FoodPrintModule {
-  const FoodPrintModule(this.name, this.description, this.icon);
+  const FoodPrintModule(this.name, this.description, this.icon, this.page);
 
   final String name;
   final String description;
   final IconData icon;
+  final Widget page;
 }
 
 const modules = [
@@ -33,30 +39,35 @@ const modules = [
     'Food Catalog',
     'Browse foods and their carbon emissions.',
     Icons.restaurant_menu,
+    FoodCatalogPage(),
   ),
   
   FoodPrintModule(
     'Daily Intake Tracker',
     'Record meals and track their daily impact.',
     Icons.edit_note,
+    DailyIntakePage(),
   ),
   
   FoodPrintModule(
     'Carbon Goals',
     'Set a daily emissions target and track progress.',
     Icons.flag_outlined,
+    CarbonGoalsPage(),
   ),
   
   FoodPrintModule(
     'Custom Meals',
     'Build meals from foods in the catalog.',
     Icons.dinner_dining,
+    CustomMealsPage(),
   ),
   
   FoodPrintModule(
     'Eco-Alternatives',
     'Share and discover lower-carbon food swaps.',
     Icons.eco_outlined,
+    EcoAlternativesPage(),
   ),
 ];
 
@@ -84,7 +95,7 @@ class ModuleHomePage extends StatelessWidget {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (_) => ModulePage(module: module),
+                  builder: (_) => module.page,
                 ),
               ),
               child: Padding(
