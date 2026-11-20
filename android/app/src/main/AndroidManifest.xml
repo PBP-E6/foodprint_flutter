@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dibutuhkan supaya aplikasi bisa mengakses API Django di PWS -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:label="foodprint_flutter"
         android:name="${applicationName}"
