@@ -4,6 +4,7 @@ import 'screens/daily_intake_page.dart';
 import 'screens/carbon_goals_page.dart';
 import 'screens/custom_meals_page.dart';
 import 'screens/eco_alternatives_page.dart';
+import 'widgets/left_drawer.dart';
 
 void main() {
   runApp(const FoodPrintApp());
@@ -78,6 +79,7 @@ class ModuleHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('FoodPrint')),
+      drawer: const LeftDrawer(),
       body: GridView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: modules.length,
