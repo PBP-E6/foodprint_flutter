@@ -75,6 +75,25 @@ Hal-hal penting dari diagram di atas:
 - **Django REST Framework sebagai pintu.** *Serializer* mengubah data model menjadi JSON (dan memvalidasi data yang masuk), sedangkan *permission* menentukan siapa yang boleh mengakses.
 - **Data emisi tidak diambil Flutter langsung dari Agribalyse.** Nilai `carbon_per_kg` diimpor ke database situs web (oleh admin), lalu dilayani ke aplikasi lewat endpoint DRF. Aplikasi tetap dapat berjalan walau API Agribalyse sedang tidak dapat diakses.
 
+### 2. Daftar endpoint
+
+Base URL: `https://ilham-naufal-foodprint.pws.cs.ui.ac.id/api/v1/`. Di aplikasi, semua alamat ini dicatat di `lib/api/endpoints.dart`.
+
+| Modul | Method | Endpoint | Akses |
+|-------|--------|----------|-------|
+| Food Catalog | GET | `/api/v1/foods/` (filter `?category=`, `?search=`) | Publik |
+| | GET | `/api/v1/foods/<id>/` | Publik |
+| Daily Intake Tracker | GET | `/api/v1/intake/` (filter `?date=YYYY-MM-DD`) | Login, hanya catatan sendiri |
+| | GET | `/api/v1/intake/<id>/` | Login, hanya catatan sendiri |
+| Carbon Goals | GET | `/api/v1/goals/` | Login, hanya target sendiri |
+| | GET | `/api/v1/goals/<id>/` | Login, hanya target sendiri |
+| Custom Meals | GET | `/api/v1/custom-meals/` | Paket publik + paket sendiri |
+| | GET | `/api/v1/custom-meals/<id>/` | Paket publik + paket sendiri (daftar bahan hanya untuk user login) |
+| Eco-Alternatives | GET | `/api/v1/eco-alternatives/` (filter `?q=`) | Publik |
+| | GET | `/api/v1/eco-alternatives/<id>/` | Publik (termasuk balasan) |
+
+Endpoint untuk menambah, mengubah, dan menghapus data dilanjutkan oleh tiap penanggung jawab modul.
+
 ## Setup
 
 ```
